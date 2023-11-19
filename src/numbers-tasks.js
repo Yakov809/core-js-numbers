@@ -87,124 +87,91 @@ function getParallelepipedDiagonal(a, b, c) {
 /**
  * Returns the number rounded to specified power of 10.
  *
- * @param {number} num
- * @param {number} pow
- * @return {number}
- *
- * @example:
- *   1234, 0  => 1234
- *   1234, 1  => 1230
- *   1234, 2  => 1200
- *   1234, 3  => 1000
- *   1678, 0  => 1678
- *   1678, 1  => 1680
- *   1678, 2  => 1700
- *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const number = 10 ** pow;
+  return Math.round(num / number) * number;
 }
 
 /**
  * Returns true is the number is prime; otherwise false.
  * See: https://en.wikipedia.org/wiki/Primality_test
  *
- * @param {number} n
- * @return {bool}
- *
- * @example:
- *   4 => false
- *   5 => true
- *   6 => false
- *   7 => true
- *   11 => true
- *   12 => false
- *   16 => false
- *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n < 2) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(n); i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
  * Tries to convert value to number and returns it if conversion was successful;
  * otherwise returns default value passed as a second argument.
  *
- * @param {any} value
- * @param {any} def
- * @return {number}
- *
- * @example
- *   toNumber(null, 0) => 0
- *   toNumber('test', 0) => 0
- *   toNumber('1', 0) => 1
- *   toNumber(42, 0) => 42
- *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (Number(value)) {
+    return Number(value);
+  }
+  return def;
 }
 
 /**
  * Returns the cube of the given number.
  *
- * @param {number} num
- * @return {number}
- *
- * @example:
- *   3  => 27
- *   -2 => -8
- *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
  * Returns the Fibonacci number located at the index position.
  *
- * @param {number} index
- * @return {number}
- *
- * @example:
- *   0  => 0
- *   1  => 1
- *   2  => 1
- *   3  => 2
- *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  let a = 1;
+  let b = 1;
+  let c;
+  if (index === 0) return 0;
+  for (let i = 3; i <= index; i += 1) {
+    c = a + b;
+    a = b;
+    b = c;
+  }
+  return b;
 }
 
 /**
  * Returns the sum of all numbers from 1 to n.
  *
- * @param {number} n
- * @return {number}
- *
- * @example:
- *   5  => 15 // (1+2+3+4+5)
- *   10 => 55 // (1+2+3+...+10)
- *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let a = 0;
+  for (let i = 1; i <= n; i += 1) {
+    a += i;
+  }
+  return a;
 }
 
 /**
  * Returns the sum of the digits of a given number.
  *
- * @param {number} num
- * @return {number}
- *
- * @example:
- *   123 => 6  // (1+2+3)
- *   202 => 4  // (2+0+2)
- *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let result = 0;
+  let temp = num;
+  while (temp) {
+    result += temp % 10;
+    temp -= temp % 10;
+    temp /= 10;
+  }
+  return result;
 }
 
 /**
@@ -218,8 +185,8 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  return Math.log2(num) % 1 === 0;
 }
 
 /**
@@ -232,8 +199,8 @@ function isPowerOfTwo(/* num */) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
@@ -247,8 +214,8 @@ function getSine(/* num */) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  return number.toString(base);
 }
 
 /**
@@ -261,8 +228,8 @@ function numberToStringInBase(/* number, base */) {
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(number, fractionDigits) {
+  return Number.parseFloat(number).toExponential(fractionDigits);
 }
 
 /**
